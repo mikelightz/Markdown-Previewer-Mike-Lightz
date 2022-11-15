@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown Previewer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <script src="./js/marked.js"></script>
+    <script>
+      function setDefault() {
+        let defaultText = `\
+# This is a Markdown Editor
+## tbh I don't know why you would need this but
+[you can click here to go to youtube](https://youtube.com/)
+> and watch some [social contract videos](https://www.youtube.com/channel/UCtixbigNdPFVXNtl3TTjJiQ)
+
+\`This is inline code\`
+    
+    with a random codeblock lol
+
+**The top videos are**
+1. Toxic
+2. Toto
+3. Investments
+
+![TSC Logo](https://yt3.ggpht.com/4Cd1uAZN0weoJZ_jD5-cpx032b0JXW7PBALAhNALyGB9Rx_TqVS68Ho2nu4plLV0OxDjLRqtWUQ=s176-c-k-c0x00ffffff-no-rj)
+        `;
+        let editorDefault = document.getElementById("editor");
+        let previewElement = document.getElementById("preview");
+        editorDefault.value = defaultText;
+        previewElement.innerHTML = marked(defaultText, { breaks: true });
+      }
+      document.onload = setDefault();
+
+      function updatePreview() {
+        let previewElement = document.getElementById("preview");
+        let editorValue = document.getElementById("editor").value;
+        let previewValue = marked(editorValue, { breaks: true });
+        previewElement.innerHTML = previewValue;
+      }
+    </script>
+  </head>
+  <body onload="setDefault()">
+    <div class="containter-fluid">
+      <div class="row">
+        <div class="col text-center text-light bg-dark">
+          <h1>Markdown Previewer by Mike Lightz</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 bg-primary d-flex flex-column">
+          <div class="form-group flex-grow-1 d-flex flex-column my-2">
+            <h2 class="text-light text-center my-2">Editor</h2>
+            <textarea
+              id="editor"
+              class="form-control flex-grow-1"
+              onkeyup="updatePreview()"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-6 bg-light">
+          <h2 class="text-center my-2">Preview</h2>
+          <div id="preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+      integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
